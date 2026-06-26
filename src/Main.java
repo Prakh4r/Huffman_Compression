@@ -1,13 +1,18 @@
+import compression.HuffmanTree;
+import model.Node;
 import util.FrequencyCounter;
 import java.util.Map;
 
 public class Main{
-    static void main() {
-        String text = "Hello\n" +
-                "World";
+    public static void main() {
+        String text = "Hello\nWorld";
         FrequencyCounter counter = new FrequencyCounter();
         Map<Character,Integer> frequencyMap = counter.count(text);
 
         System.out.println(frequencyMap);
+
+        HuffmanTree tree = new HuffmanTree(frequencyMap);
+        tree.buildTree();
+        tree.printPreOrder();
     }
 }
