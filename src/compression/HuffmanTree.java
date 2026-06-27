@@ -2,6 +2,7 @@ package compression;
 
 import model.Node;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -44,5 +45,36 @@ public class HuffmanTree {
         }
         printPreOrder(node.getLeft());
         printPreOrder(node.getRight());
+    }
+
+    private final Map<Character, String> huffmanCodes = new HashMap<>();
+
+    public Map<Character, String> generateCodes() {
+        huffmanCodes.clear();
+        generateCodes(root, new StringBuilder());
+        return huffmanCodes;
+    }
+
+    private void generateCodes(Node node, StringBuilder code) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.isLeaf()) {
+            if (code.length() == 0) {
+                huffmanCodes.put(node.getCharacter(), "0");
+            } else {
+                huffmanCodes.put(node.getCharacter(), code.toString());
+            }
+            return;
+        }
+
+        code.append('0');
+        generateCodes(node.getLeft(), code);
+        code.deleteCharAt(code.length() - 1);
+
+        code.append('1');
+        generateCodes(node.getRight(), code);
+        code.deleteCharAt(code.length() - 1);
     }
 }

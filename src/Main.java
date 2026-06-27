@@ -13,6 +13,11 @@ public class Main{
 
         HuffmanTree tree = new HuffmanTree(frequencyMap);
         tree.buildTree();
-        tree.printPreOrder();
+
+
+        Map<Character, String> codes = tree.generateCodes();
+        for(Map.Entry<Character,String> entry : codes.entrySet()){
+            System.out.println("'" + entry.getKey() + "' -> " + entry.getValue());
+        }
     }
 }
