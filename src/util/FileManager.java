@@ -1,5 +1,11 @@
 package util;
 
-public class FileManager {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
+public class FileManager {
+    public String readFile(String path) throws IOException{
+        return Files.readString(Path.of(path));
+    }
 }
