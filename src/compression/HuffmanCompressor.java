@@ -1,10 +1,13 @@
 package compression;
 
 import io.BitOutputStream;
+import io.HuffHeaderReader;
 import io.HuffHeaderWriter;
+import model.Header;
 import util.FileManager;
 import util.FrequencyCounter;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,5 +52,6 @@ public class HuffmanCompressor {
 
         System.out.println("Output Size : "
                 + Files.size(Path.of(outputPath)) + " bytes");
+
     }
 }
