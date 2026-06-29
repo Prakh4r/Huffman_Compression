@@ -21,6 +21,22 @@ public class HuffmanTree {
         for(Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
             pq.add(new Node(entry.getKey(), entry.getValue()));
         }
+        if (pq.size() == 1) {
+            /*root == null
+                  ↓
+            generateCodes() returns empty map
+                  ↓
+            encoder appends "null"
+                  ↓
+            'n' reaches BitOutputStream
+                  ↓
+            Exception
+            */
+            //change to handle the edge case of same character string
+            Node onlyNode = pq.poll();
+            root = new Node(onlyNode.getFrequency(), onlyNode, null);
+            return root;
+        }
         while(pq.size() > 1){
             Node leftChild = pq.poll();
             Node rightChild = pq.poll();
