@@ -1,4 +1,5 @@
 import compression.HuffmanCompressor;
+import io.BitInputStream;
 import io.HuffHeaderReader;
 import model.Header;
 
